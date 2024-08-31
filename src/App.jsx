@@ -1,3 +1,4 @@
+import Services from "./components/Services/Services";
 import Cars from "./Pages/Cars";
 
 function App() {
@@ -5,6 +6,7 @@ function App() {
 		<>
 			Hello team!!!
 			<Cars />
+			<Services />
 		</>
 	);
 }
