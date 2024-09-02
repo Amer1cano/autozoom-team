@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable react/no-unescaped-entities */
+
 import SportCar from '../../assets/img/images.jpg'
 import Vector from '../../assets/img/vector.svg'
 import Royce from '../../assets/img/rolls royce.jpg'
@@ -43,7 +44,7 @@ const Services = () => {
 
             <div className="bg-slate-900 pt-10 pb-10">
                 <div className="container mx-auto w-full flex">
-                    <iframe className='w-3/5 youtube-video' src="https://www.youtube.com/embed/6Bcg46rxqAE?si=oUOIn81REX0sL4RT&start=2" frameborder="0"></iframe>
+                    <iframe className='w-3/5 youtube-video' src="https://www.youtube.com/embed/6Bcg46rxqAE?si=oUOIn81REX0sL4RT&start=2"></iframe>
                     <div className="w-2/5 ms-5">
                         <h1 className="text-5xl pb-8 text-white">SPORTS CAR RENTAL DUBAI</h1>
                         <p className="text-xl text-white">Auto Zoom L L C a Car is a Top Luxury Car Rental Dubai based company, We offer sports car rental, and supercar rental in Dubai. The best luxury car rental process provided by our fleet . We own a diverse range of luxury supercar rental and sports car rental Dubai style , including Rolls Royce, Lamborghini, Maserati, Ferrari, Mercedes Benz, Porsche, and Range Rover, to name a few. Rent a car with the best car rental company in Dubai.</p>
