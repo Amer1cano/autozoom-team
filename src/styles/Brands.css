@@ -1,8 +1,10 @@
 .brands{
     color: white;
+    margin-top: 50px;
+    padding: 50px;
 }
 .brands-top{
-    padding-left: 20px;
+    padding-left: 50px;
 }
 .brands-top-text{
     font-size: 40px;
@@ -10,7 +12,6 @@
     margin-bottom: 50px;
 }
 .brands-cont{
-    margin-left: 50px;
     display: grid;
     grid-template-columns: auto auto auto auto;
     gap: 50px;

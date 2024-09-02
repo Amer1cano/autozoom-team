@@ -15,7 +15,6 @@ const Brands = () => {
     useEffect(()=>{
         getFunction()
     },[])
-    console.log(brands);
     
 
   return (
