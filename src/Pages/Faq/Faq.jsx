@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import './Faq.css'
 import Vector from '../../assets/img/vector.svg'
+import Aventador from '../../assets/img/aventador.webp'
+import Urus from '../../assets/img/urus.webp'
+import Uruss from '../../assets/img/Uruss.webp'
+import Ferrari from '../../assets/img/ferrari.webp'
+import Huracan from '../../assets/img/huracan.webp'
+import Orangy from '../../assets/img/orangy.webp'
 
 const Faq = () => {
 
@@ -27,6 +33,14 @@ const Faq = () => {
         }
 
     ]
+    const images = [
+        { id: 1, src: Aventador },
+        { id: 2, src: Urus },
+        { id: 3, src: Uruss },
+        { id: 4, src: Huracan },
+        { id: 5, src: Ferrari },
+        { id: 6, src: Orangy },
+    ]
 
     const [selected, setSelected] = useState(null)
     const toggle = (i) => {
@@ -36,11 +50,15 @@ const Faq = () => {
 
         setSelected(i)
     }
+    const [selectImg, setSelectImg] = useState(null)
+    const imageHandle = (image) => {
+        setSelectImg(image)
+    }
 
     return (
         <div className='bg-slate-900 pt-10 pb-10'>
             <div className="container mx-auto">
-            <h1 className="text-white text-4xl pt-8 pb-8">FAQ</h1>
+                <h1 className="text-white text-4xl pt-8 pb-8">FAQ</h1>
                 {
                     accordionData?.map((item, i) =>
                         <div key={i} className={`accordion ${selected == i ? 'accordion-active' : ''}`}>
@@ -48,9 +66,26 @@ const Faq = () => {
                                 <span><img src={Vector} alt="image" /></span>
                                 <h3 className='accord-title text-2xl text-white ps-5'>{item?.title}</h3>
                             </div>
-                            <div id='tab-1' className={`accordion-content bg-slate-800 ms-7 text-white text-xl ${selected == i ? 'accordion-content-active' : ''}`} >
+                            <div id='tab-1' className={` bg-slate-800 ms-7 text-white text-xl accordion-content ${selected == i ? 'accordion-content-active' : ''}`} >
                                 {item?.description}
                             </div>
+                        </div>
+                    )
+                }
+            </div>
+            <div className="container mx-auto">
+                <h1 className="text-white text-4xl pt-24 pb-8">FOLLOW US ON INSTAGRAM</h1>
+                <div  className="w-full flex align-center justify-center flex-wrap">
+                    {
+                        images.map((img, i) => (
+                            <img onClick={() => imageHandle(img)} className='w-44 m-3 cursor-pointer insta-img' src={img?.src} alt="img" />
+                        ))
+                    }
+                </div>
+                {
+                    selectImg && (
+                        <div onClick={() => setSelectImg(null)} className="fixed top-0 left-0 w-full h-screen flex modal-img">
+                            <img className='w-80 h-80 modal-image' src={selectImg?.src} alt="" />
                         </div>
                     )
                 }

@@ -1,6 +1,7 @@
-import Faq from "./components/Faq/Faq";
-import Services from "./components/Services/Services";
+import Faq from "./Pages/Faq/Faq";
+import Services from "./Pages/Services/Services";
 import Cars from "./Pages/Cars";
+import Location from "./components/Locations/Locations";
 
 function App() {
 	return (
@@ -9,6 +10,7 @@ function App() {
 			<Cars />
 			<Services />
 			<Faq />
+			<Location />
 		</>
 	);
 }
