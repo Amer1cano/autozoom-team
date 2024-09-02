@@ -7,8 +7,8 @@ import './Services.css'
 
 const Services = () => {
     return (
-        <>
-            <div className='bg-slate-900 mt-10 pt-10 pb-10'>
+        <div id='services-box'>
+            <div className=' pt-10 pb-10'>
                 <div className='container mx-auto'>
                     <h1 className='text-4xl pb-10 text-white'>SERVICES</h1>
                     <div className="flex">
@@ -33,7 +33,7 @@ const Services = () => {
                 </div>
             </div>
 
-            <div className="bg-slate-800">
+            <div>
                 <div className="container mx-auto pt-10 pb-10">
                     <h1 className="text-5xl text-white pt-5 pb-8">LUXURY CAR RENTAL IN DUBAI</h1>
                     <p className="text-xl text-white">Are you ready to feel the adrenaline rush and unleash your inner speed demon? Look no further than Auto Zoom luxury car rental Dubai, the city where dreams become reality. In this ultimate guide to sports car rental Dubai, we will take you on a thrilling journey through the world of luxury and supercar rental Dubai. Imagine cruising down the iconic Sheikh Zayed Road in a sleek and powerful sports car rental Dubai style, turning heads and leaving everyone in awe of your style. Whether you are a car enthusiast or simply looking to</p>
@@ -42,7 +42,7 @@ const Services = () => {
                 </div>
             </div>
 
-            <div className="bg-slate-900 pt-10 pb-10">
+            <div className="pt-10 pb-10">
                 <div className="container mx-auto w-full flex">
                     <iframe className='w-3/5 youtube-video' src="https://www.youtube.com/embed/6Bcg46rxqAE?si=oUOIn81REX0sL4RT&start=2"></iframe>
                     <div className="w-2/5 ms-5">
@@ -54,7 +54,7 @@ const Services = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 
