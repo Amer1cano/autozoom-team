@@ -161,7 +161,7 @@ export default function CarDetail() {
 							</div>
 						</div>
 
-						<div className="flex flex-col text-white">
+						<div className="flex flex-col text-white hidden">
 							<div className="flex justify-between border">
 								<div>
 									<h2>
@@ -227,7 +227,9 @@ export default function CarDetail() {
 						</div>
 
 						<div className="text-white">
-							<h2 className="uppercase">Similar Offers</h2>
+							<h2 className="uppercase text-[24px] font-semibold tracking-wide">
+								Similar Offers
+							</h2>
 							{data?.map((category) => (
 								<div key={category.id} className="py-2 max-w-[1248px] mx-auto">
 									<div className="grid grid-cols-4 gap-4">
