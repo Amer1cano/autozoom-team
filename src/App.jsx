@@ -1,8 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import Cars from "./pages/CarsPage/Cars-Categories";
 import { GlobalContextProvider } from "./context/global-context";
 import CarDetail from "./pages/CarsPage/Cars-Info";
-
+import Cars from "./pages/CarsPage/Cars-Categories";
 import Navbar from "./components/Navbar";
 import Services from "./components/Services/Services";
 import Brands from "./pages/Brands";
@@ -19,7 +18,7 @@ function App() {
 			<section className="select-none">
 			<GlobalContextProvider>
 				<Routes>
-					<Route path="/" element={<Cars />} />
+					<Route path="/" element={<Cars/>} />
 					<Route path="/carinfo/:id" element={<CarDetail />} />
 				</Routes>
 			</GlobalContextProvider>
