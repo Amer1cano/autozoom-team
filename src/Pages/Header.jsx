@@ -1,3 +1,4 @@
+
 import { Carousel } from 'flowbite-react';
 import '../styles/Header.css';
 import { useEffect, useState } from 'react';
@@ -37,7 +38,8 @@ const Header = () => {
       </div>
       <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
         <Carousel leftControl=" " rightControl=" ">
-          {category.map((item)=>{
+          {
+          category.map((item)=>{
               return <div key={item?.id} className='carousel-cont'>
                 <a href="">
                   <img src={`https://autoapi.dezinfeksiyatashkent.uz/api/uploads/images/${item?.image_src}`} className='carousel-img' alt=""/>
