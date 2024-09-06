@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { GlobalContextProvider } from "./context/global-context";
-import CarDetail from "./pages/CarsPage/Cars-Info";
+import CarDetail from "./pages/CarsPage/Cars-info";
 import Cars from "./pages/CarsPage/Cars-Categories";
 import Navbar from "./components/Navbar";
 import Services from "./components/Services/Services";
