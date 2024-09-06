@@ -3,6 +3,7 @@ import Cars from "./pages/CarsPage/Cars-Categories";
 import { GlobalContextProvider } from "./context/global-context";
 import CarDetail from "./pages/CarsPage/Cars-Info";
 
+
 function App() {
 	return (
 		<section className="select-none">
