@@ -1,0 +1,24 @@
+.header{
+    color: white;
+    padding-top: 100px;
+    text-align: center;
+    background-color: rgb(17,18,25);
+}
+.header-top-head-text{
+    font-size: 50px;
+    font-weight: 500;
+}
+.header-top-extra-text{
+    font-size: 25px;
+}
+.header-top-text{
+    font-size: 30px;
+}
+.carousel-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.carousel-img{
+    width: 100%;
+}
