@@ -8,4 +8,7 @@ export default defineConfig({
     open: true
   },
   plugins: [react()],
+  optimizeDeps: {
+    exclude: ['js-big-decimal']
+  }
 })
