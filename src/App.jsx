@@ -6,7 +6,6 @@ import CarDetail from "./pages/CarsPage/Cars-Info";
 import Navbar from "./components/Navbar";
 import Services from "./components/Services/Services";
 import Brands from "./pages/Brands";
-import Header from "./pages/Header";
 
 function App() {
 	
@@ -14,7 +13,6 @@ function App() {
 		
 		<>
 			<Navbar/>
-			<Header/>
 			<Brands/>
 			<section className="select-none">
 			<GlobalContextProvider>
