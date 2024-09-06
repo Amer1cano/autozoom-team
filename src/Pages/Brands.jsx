@@ -36,6 +36,21 @@ const Brands = () => {
             ))
         }
       </div>
+      <div className="brands-cont-mobile">
+        {
+            brands.map((item,index)=>{
+              if(index<3){
+                return <div key={item?.id} className="brands-card">
+                    <img src={`https://autoapi.dezinfeksiyatashkent.uz/api/uploads/images/${item?.image_src}`} alt="" />
+                    <h3 className="brands-card-text">
+                        {item?.title}
+                    </h3>
+                </div>
+              }
+                
+            })
+        }
+      </div>
     </div>
   )
 }

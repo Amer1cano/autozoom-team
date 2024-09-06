@@ -1,4 +1,6 @@
 .header{
+    max-width: 1620px;
+    margin: 0 auto;
     color: white;
     padding-top: 100px;
     text-align: center;
@@ -21,4 +23,19 @@
 }
 .carousel-img{
     width: 100%;
+}
+
+
+
+@media screen and (max-width:600px) {
+    .header-top-head-text{
+        font-size: 40px;
+        font-weight: 500;
+    }
+    .header-top-extra-text{
+        font-size: 15px;
+    }
+    .header-top-text{
+        font-size: 20px;
+    }
 }

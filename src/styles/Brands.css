@@ -1,7 +1,9 @@
 .brands{
+    max-width: 1620px;
+    margin: 0 auto;
     color: white;
-    margin-top: 50px;
     padding: 50px;
+    margin-top: 50px;
 }
 .brands-top{
     padding-left: 50px;
@@ -15,6 +17,10 @@
     display: grid;
     grid-template-columns: auto auto auto auto;
     gap: 50px;
+}
+.brands-cont-mobile{
+    display: none;
+
 }
 .brands-card{
     width: 250px;
@@ -37,4 +43,41 @@
     position: absolute;
     bottom: 0;
     left: 10%;
+}
+
+@media screen and (max-width:1220px){
+    .brands-cont{
+        grid-template-columns: auto auto auto;
+        gap: 20px;
+    }
+}
+
+
+
+@media screen and (max-width:850px){
+    .brands-cont{
+        grid-template-columns: auto auto;
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .brands-cont{
+        width: 100%;
+        grid-template-columns: auto;
+        
+    }
+    .brands-card{
+        width: 100%;
+    }
+    .brands-cont{
+        display: none;
+    }
+    .brands-cont-mobile{
+        display: block;
+        display: grid;
+        width: 100%;
+        grid-template-columns: auto;
+        gap: 50px;
+    }
 }
