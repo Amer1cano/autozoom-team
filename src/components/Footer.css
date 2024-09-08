@@ -1,3 +1,5 @@
 .footerBtn:hover{
-    
+    background-color: #fe363b;
+    color: white;
+    border: none;
 }
