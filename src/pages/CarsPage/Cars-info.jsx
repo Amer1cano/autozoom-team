@@ -13,8 +13,15 @@ import { BsFuelPump } from "react-icons/bs";
 import { LuPhone } from "react-icons/lu";
 import CarImageGallery from "./Car-Image-Gallery";
 import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
+import { useState } from "react";
+import axios from "axios";
 
 export default function CarDetail() {
+	const [nameValue, setNameValue] = useState("");
+	const [phoneValue, setPhoneValue] = useState();
+	const [periodValue, setPeriodValue] = useState("");
+	const [detailsValue, setDetailsValue] = useState("");
+
 	const { data } = useGlobalContext();
 	const { id } = useParams();
 
@@ -44,6 +51,36 @@ export default function CarDetail() {
 		window.scrollTo({
 			top: 0,
 		});
+	};
+
+	const sendUserData = (event) => {
+		event.preventDefault();
+
+		const token = "6948864577:AAHTh7RO9xCZ6WFKQCle7YqvOnbfcXZIaP4";
+		const chat_id = "5850460435";
+		const url = `https://api.telegram.org/bot${token}/sendMessage`;
+		const messageContent = `Ism: ${nameValue} \nTel:  ${phoneValue} \nPeriod: ${periodValue} \nDetails: ${detailsValue}`;
+
+		axios({
+			url: url,
+			method: "POST",
+			data: {
+				chat_id: chat_id,
+				text: messageContent,
+			},
+		})
+			.then(() => {
+				setTimeout(() => {
+					setNameValue("");
+					setPhoneValue("");
+					setPeriodValue("");
+					setDetailsValue("");
+					alert("Siz sorovingiz muaffaqiyatli yuborildi ");
+				}, 500);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	};
 
 	const carCards = (car, images) => {
@@ -222,13 +259,18 @@ export default function CarDetail() {
 									</a>
 								</article>
 
-								<form className="border mx-auto max-w-[400px] lg:w-[400px] p-10 lg:ml-10 mt-10 flex flex-col gap-y-5">
+								<form
+									onSubmit={sendUserData}
+									className="border mx-auto max-w-[400px] lg:w-[400px] p-10 lg:ml-10 mt-10 flex flex-col gap-y-5"
+								>
 									<div className="relative">
 										<input
-											type="text"
 											required
+											type="text"
 											placeholder="Name"
 											autoComplete="off"
+											value={nameValue}
+											onChange={(e) => setNameValue(e.target.value)}
 											className="bg-[#69696B] text-gray-300 placeholder:text-gray-300 text-lg w-full p-4 pr-7 border outline-none"
 										/>
 										<span className="absolute right-3 top-1/2 -translate-y-1/2 text-red-500 text-[28px]">
@@ -238,10 +280,12 @@ export default function CarDetail() {
 
 									<div className="relative">
 										<input
-											type="tel"
 											required
-											placeholder="Phone"
+											type="tel"
 											autoComplete="off"
+											placeholder="Phone"
+											value={phoneValue}
+											onChange={(e) => setPhoneValue(e.target.value)}
 											className="bg-[#69696B] text-gray-300 placeholder:text-gray-300 text-lg w-full p-4 pr-7 border outline-none"
 										/>
 										<span className="absolute right-3 top-1/2 -translate-y-1/2 text-red-500 text-[28px]">
@@ -251,21 +295,22 @@ export default function CarDetail() {
 
 									<input
 										type="text"
-										placeholder="Period"
 										autoComplete="off"
+										placeholder="Period"
+										value={periodValue}
+										onChange={(e) => setPeriodValue(e.target.value)}
 										className="bg-[#69696B] text-gray-300 placeholder:text-gray-300 text-lg w-full p-4 border outline-none"
 									/>
 									<input
 										type="text"
 										placeholder="Details"
 										autoComplete="off"
+										value={detailsValue}
+										onChange={(e) => setDetailsValue(e.target.value)}
 										className="bg-[#69696B] text-gray-300 placeholder:text-gray-300 text-lg w-full p-4 border outline-none"
 									/>
 
-									<button
-										type="submit"
-										className="self-start px-8 py-4 text-lg bg-[#FC473E]"
-									>
+									<button className="self-start px-8 py-4 text-lg bg-[#FC473E]">
 										Send
 									</button>
 								</form>
