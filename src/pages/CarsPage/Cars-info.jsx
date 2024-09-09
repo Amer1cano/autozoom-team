@@ -10,9 +10,9 @@ import {
 } from "react-icons/tb";
 import { IoCarSportOutline, IoColorPaletteOutline } from "react-icons/io5";
 import { BsFuelPump } from "react-icons/bs";
-import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 import { LuPhone } from "react-icons/lu";
 import CarImageGallery from "./Car-Image-Gallery";
+import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 
 export default function CarDetail() {
 	const { data } = useGlobalContext();
@@ -46,239 +46,267 @@ export default function CarDetail() {
 		});
 	};
 
+	const carCards = (car, images) => {
+		return (
+			<Link to={`/carinfo/${car.id}`} onClick={scrollTop}>
+				{images.map((img, index) => {
+					return (
+						img.is_main && (
+							<section key={index} className="flex items-center h-[200px]">
+								<img
+									alt="selected car img"
+									className="mx-auto w-[210px]"
+									src={`https://api.autozoomrental.com/api/uploads/images/${img.image.src}`}
+								/>
+							</section>
+						)
+					);
+				})}
+
+				<article className="mt-14">
+					<h3 className="text-[22px] tracking-wider leading-none opacity-95">
+						{car.brand.title} {car.model.name}
+					</h3>
+					<section className="border-t border-zinc-400 my-3 space-x-1">
+						<span className="font-bold text-[20px]">
+							AED {car.price_in_aed}
+						</span>
+						<span className="text-[18px] opacity-65">
+							/ $ {car.price_in_usd}
+						</span>
+					</section>
+					<span className="opacity-65">per day</span>
+				</article>
+			</Link>
+		);
+	};
+
 	return (
-		<section className="max-w-[1540px] bg-[#1E1F27]">
+		<main className="max-w-[1540px] bg-[#1E1F27]">
 			{carDetails?.map((car) => (
-				<div key={car.id} className="pt-10 max-w-[1248px] mx-auto">
-					<div>
-						<h2 className="leading-none text-white font-bold tracking-wider text-[48px]">
-							{car.brand.title} {car.model.name} ({car.color})
-						</h2>
+				<section
+					key={car.id}
+					className="pt-10 mx-auto px-6 md:px-0 max-w-[450px] xs:max-w-[600px] sm:max-w-[800px] md:max-w-[1000px] lg:max-w-[1248px]"
+				>
+					<section>
+						<header>
+							<h1 className="leading-none text-white font-bold tracking-wider text-[20px] sm:text-[48px]">
+								{car.brand.title} {car.model.name} ({car.color})
+							</h1>
+						</header>
 
-						<div className="flex items-start justify-between mt-10">
-							<div className="w-[700px] space-y-4 no-scrollbar overflow-y-auto cursor-pointer">
+						<main className="flex flex-col lg:flex-row justify-between mt-10 text-white">
+							<section className="lg:w-[700px] space-y-4 no-scrollbar overflow-y-auto cursor-pointer">
 								<CarImageGallery images={car.car_images} />
-							</div>
 
-							<div className="w-[500px] text-white">
-								<div className="flex justify-between border-stone-400 border-b pb-5">
+								<article className="flex flex-col gap-y-4">
+									<p className="text-[20px] xs:text-[26px] font-bold">
+										Good to know about {car.brand.title} {car.model.name} (
+										{car.color})
+									</p>
+									<p className="flex flex-col xs:text-[20px] font-bold sm:mt-4">
+										<span className="font-light opacity-70 text-[14px]">
+											Kilometrage limit per day
+										</span>
+										{car.max_speed} KM (Every extra km will be charged 20
+										AED/km)
+									</p>
+									<p className="flex flex-col xs:text-[20px] font-bold">
+										<span className="font-light opacity-70 text-[14px]">
+											Car rental deposit amount
+										</span>
+										The deposit is refunded within 28 days
+									</p>
+								</article>
+							</section>
+
+							<section className="lg:w-[500px] text-white">
+								<article className="flex justify-between border-stone-400 border-b pb-5 mt-10 md:mt-0">
 									<div className="flex flex-col">
 										<div>
 											<span className="font-bold">AED {car.price_in_aed} </span>
-											<span className="font-bold opacity-60">
+											<span className="font-bold opacity-70">
 												/ $ {car.price_in_usd}
 											</span>
 										</div>
-										<span className="opacity-60 text-[14px]">per day</span>
+										<span className="opacity-70 text-[14px]">per day</span>
 										<span className="font-medium line-through">AED / $</span>
 									</div>
 
-									<div className="opacity-60 text-[14px] flex flex-col">
+									<div className="opacity-70 text-[14px] flex flex-col">
 										<span>Deposit</span>
 										<span className="mt-8">Premium protection</span>
 									</div>
 
 									<div className="flex flex-col">
 										<span className="font-bold">AED 0</span>
-										<span className="opacity-60 text-[14px]">
+										<span className="opacity-70 text-[14px]">
 											AED 0 for credit cards payment
 										</span>
 										<span className="font-bold">
 											AED {car.price_in_aed_sale ? car.price_in_aed_sale : 0}
 										</span>
-										<span className="opacity-60 text-[14px]">
+										<span className="opacity-70 text-[14px]">
 											AED {car.price_in_aed_sale ? car.price_in_aed_sale : 0}{" "}
 											price for 1 day
 										</span>
 									</div>
-								</div>
+								</article>
 
-								<div className="grid grid-cols-5 gap-x-16 gap-y-5 text-[18px] px-5 border-stone-400 border-b mt-10 pb-4">
+								<article className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-10 lg:grid-cols-5 lg:gap-x-16 gap-y-5 text-[18px] md:px-5 border-stone-400 border-b mt-10 pb-4">
 									<div className="flex flex-col items-center gap-y-1">
-										<MdOutlineDateRange className="opacity-60 size-6" />
+										<MdOutlineDateRange className="opacity-70 size-6" />
 										<span>{car.year}</span>
 									</div>
 									<div className="flex flex-col items-center gap-y-1">
-										<MdShutterSpeed className="opacity-60 size-6" />
+										<MdShutterSpeed className="opacity-70 size-6" />
 										<span>{car.seconds}</span>
 									</div>
 									<div className="flex flex-col items-center gap-y-1">
-										<SlSpeedometer className="opacity-60 size-6" />
+										<SlSpeedometer className="opacity-70 size-6" />
 										<span>{car.max_speed}</span>
 									</div>
 									<div className="flex flex-col items-center gap-y-1">
-										<TbUserOff className="opacity-60 size-6" />
+										<TbUserOff className="opacity-70 size-6" />
 										<span>{car.max_people}</span>
 									</div>
 									<div className="flex flex-col items-center gap-y-1">
-										<IoColorPaletteOutline className="opacity-60 size-6" />
+										<IoColorPaletteOutline className="opacity-70 size-6" />
 										<span>{car.color}</span>
 									</div>
 									<div className="flex flex-col items-center gap-y-1">
-										<TbEngine className="opacity-60 size-6" />
+										<TbEngine className="opacity-70 size-6" />
 										<span>{car.motor}</span>
 									</div>
 									<div className="flex flex-col items-center gap-y-1">
-										<TbAutomaticGearbox className="opacity-60 size-6" />
+										<TbAutomaticGearbox className="opacity-70 size-6" />
 										<span>{car.transmission}</span>
 									</div>
 									<div className="flex flex-col items-center gap-y-1">
-										<TbCar4Wd className="opacity-60 size-6" />
+										<TbCar4Wd className="opacity-70 size-6" />
 										<span>front</span>
 									</div>
 									<div className="flex flex-col items-center gap-y-1">
-										<BsFuelPump className="opacity-60 size-6" />
+										<BsFuelPump className="opacity-70 size-6" />
 										<span>{car.petrol}</span>
 									</div>
 									<div className="flex flex-col items-center gap-y-1">
-										<IoCarSportOutline className="opacity-60 size-6" />
+										<IoCarSportOutline className="opacity-70 size-6" />
 										<span>{defineCategory(car.category_id)}</span>
 									</div>
-								</div>
+								</article>
 
-								<div className="flex justify-center gap-x-4 mt-9">
-									<button className="px-5 py-3 bg-[#5AEC5A] rounded-[12px]">
-										<a
-											href="https://api.whatsapp.com/send/?phone=971527030189&text&type=phone_number&app_absent=0"
-											target="blank"
-										>
-											<FaWhatsapp className="size-8" />
-										</a>
-									</button>
+								<article className="flex justify-center gap-x-10 sm:gap-x-14 lg:gap-x-6 mt-9">
+									<a
+										target="blank"
+										className="px-5 py-3 bg-[#5AEC5A] rounded-[12px]"
+										href="https://api.whatsapp.com/send/?phone=971527030189&text&type=phone_number&app_absent=0"
+									>
+										<FaWhatsapp className="size-8" />
+									</a>
 
-									<button className="px-5 py-3 bg-[#2374F8] rounded-[12px]">
-										<a href="https://t.me/+971527030189" target="blank">
-											<FaTelegramPlane className="size-8" />
-										</a>
-									</button>
+									<a
+										target="blank"
+										href="https://t.me/+971527030189"
+										className="px-5 py-3 bg-[#2374F8] rounded-[12px]"
+									>
+										<FaTelegramPlane className="size-8" />
+									</a>
 
-									<button className="px-5 py-3 bg-[#FFB630] rounded-[12px]">
-										<a href="tel:971527030189" target="blank">
-											<LuPhone className="size-8" />
-										</a>
-									</button>
-								</div>
-							</div>
-						</div>
+									<a
+										target="blank"
+										href="tel:971527030189"
+										className="px-5 py-3 bg-[#FFB630] rounded-[12px]"
+									>
+										<LuPhone className="size-8" />
+									</a>
+								</article>
 
-						<div className="flex flex-col text-white hidden">
-							<div className="flex justify-between border">
-								<div>
-									<h2>
-										Good to know about {car.brand.title} {car.model.name} (
-										{car.color})
-									</h2>
-									<p className="flex flex-col">
-										<span>Kilometrage limit per day</span>
-										{car.max_speed} KM (Every extra km will be charged 20
-										AED/km)
-									</p>
-									<p>
-										<span>Car rental deposit amount</span>
-										The deposit is refunded within 28 days
-									</p>
-								</div>
-
-								<div>
-									<form className="flex flex-col">
+								<form className="border mx-auto max-w-[400px] lg:w-[400px] p-10 lg:ml-10 mt-10 flex flex-col gap-y-5">
+									<div className="relative">
 										<input
 											type="text"
 											required
 											placeholder="Name"
 											autoComplete="off"
+											className="bg-[#69696B] text-gray-300 placeholder:text-gray-300 text-lg w-full p-4 pr-7 border outline-none"
 										/>
+										<span className="absolute right-3 top-1/2 -translate-y-1/2 text-red-500 text-[28px]">
+											*
+										</span>
+									</div>
+
+									<div className="relative">
 										<input
 											type="tel"
 											required
 											placeholder="Phone"
 											autoComplete="off"
+											className="bg-[#69696B] text-gray-300 placeholder:text-gray-300 text-lg w-full p-4 pr-7 border outline-none"
 										/>
-										<input
-											type="text"
-											required
-											placeholder="Period"
-											autoComplete="off"
-										/>
-										<input
-											type="text"
-											required
-											placeholder="Details"
-											autoComplete="off"
-										/>
+										<span className="absolute right-3 top-1/2 -translate-y-1/2 text-red-500 text-[28px]">
+											*
+										</span>
+									</div>
 
-										<button type="submit" className="self-start">
-											Send
-										</button>
-									</form>
-								</div>
-							</div>
+									<input
+										type="text"
+										placeholder="Period"
+										autoComplete="off"
+										className="bg-[#69696B] text-gray-300 placeholder:text-gray-300 text-lg w-full p-4 border outline-none"
+									/>
+									<input
+										type="text"
+										placeholder="Details"
+										autoComplete="off"
+										className="bg-[#69696B] text-gray-300 placeholder:text-gray-300 text-lg w-full p-4 border outline-none"
+									/>
 
-							<div className="flex flex-col self-end">
-								<span>The price doesnt include additional 5% VAT.</span>
-								<span>
-									There is a 3% transaction fee when paying by credit/debit
-									card.
-								</span>
-								<span>
-									There is a 7% transaction fee when paying with American
-									Express.
-								</span>
-							</div>
-						</div>
+									<button
+										type="submit"
+										className="self-start px-8 py-4 text-lg bg-[#FC473E]"
+									>
+										Send
+									</button>
+								</form>
 
-						<div className="text-white">
-							<h2 className="uppercase text-[24px] font-semibold tracking-wide">
+								<article className="flex flex-col self-end font-light opacity-70 text-[15px] mt-20">
+									<span>The price doesnt include additional 5% VAT.</span>
+									<span>
+										There is a 3% transaction fee when paying by credit/debit
+										card.
+									</span>
+									<span>
+										There is a 7% transaction fee when paying with American
+										Express.
+									</span>
+								</article>
+							</section>
+						</main>
+
+						<section className="text-white mt-[6rem]">
+							<h2 className="uppercase text-[28px] mb-4 leading-none font-semibold tracking-wide">
 								Similar Offers
 							</h2>
 							{data?.map((category) => (
-								<div key={category.id} className="py-2 max-w-[1248px] mx-auto">
-									<div className="grid grid-cols-4 gap-4">
-										{category.cars.map((car) => (
-											<div
-												key={car.id}
-												className="max-w-[350px] bg-[#2D2E34] border border-zinc-500 cursor-pointer p-4 text-white rounded-xl"
-											>
-												<Link to={`/carinfo/${car.id}`} onClick={scrollTop}>
-													{car.car_images.map(
-														(img, index) =>
-															img.is_main && (
-																<div
-																	key={index}
-																	className="flex items-center h-[200px]"
-																>
-																	<img
-																		alt="selected car img"
-																		className="mx-auto w-[210px]"
-																		src={`https://api.autozoomrental.com/api/uploads/images/${img.image.src}`}
-																	/>
-																</div>
-															),
-													)}
-
-													<div className="mt-14">
-														<h3 className="text-[22px] tracking-wider leading-none opacity-95">
-															{car.brand.title} {car.model.name}
-														</h3>
-														<div className="border-t border-zinc-400 my-3 space-x-1">
-															<span className="font-bold text-[20px]">
-																AED {car.price_in_aed}
-															</span>
-															<span className="text-[18px] opacity-65">
-																/ $ {car.price_in_usd}
-															</span>
-														</div>
-														<span className="opacity-65">per day</span>
-													</div>
-												</Link>
-											</div>
-										))}
-									</div>
-								</div>
+								<section
+									key={category.id}
+									className="grid xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 py-2"
+								>
+									{category.cars.map((car) => (
+										<div
+											key={car.id}
+											className="max-w-[400px] w-[100%] mx-auto bg-[#2D2E34] border border-zinc-500 cursor-pointer p-4 text-white rounded-xl"
+										>
+											{carCards(car, car.car_images)}
+										</div>
+									))}
+								</section>
 							))}
-						</div>
-					</div>
-				</div>
+						</section>
+					</section>
+				</section>
 			))}
-		</section>
+		</main>
 	);
 }

@@ -1,7 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-import Cars from "./pages/CarsPage/Cars-Categories";
 import { GlobalContextProvider } from "./context/global-context";
-import CarDetail from "./pages/CarsPage/Cars-Info";
+import Cars from "./pages/CarsPage/Cars-Home";
+import CarDetail from "./pages/CarsPage/Cars-info";
+import CarsRent from "./pages/CarsPage/Cars-Rent";
 
 function App() {
 	return (
@@ -10,6 +11,7 @@ function App() {
 				<Routes>
 					<Route path="/" element={<Cars />} />
 					<Route path="/carinfo/:id" element={<CarDetail />} />
+					<Route path="/cars/:id" element={<CarsRent />} />
 				</Routes>
 			</GlobalContextProvider>
 		</section>
