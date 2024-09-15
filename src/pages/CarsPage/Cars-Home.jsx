@@ -27,28 +27,54 @@ export default function Cars() {
 	};
 
 	return (
-		<section className="max-w-[1540px] bg-[#272933]">
+		<main className="max-w-[1540px] bg-[#272933]">
 			{data?.map((category) => (
-				<div key={category.id} className="py-8 max-w-[1248px] mx-auto">
-					<div>
-						<div className="flex text-white justify-between">
-							<h2 className="text-[34px] uppercase leading-none">
+				<section
+					key={category.id}
+					className="py-8 max-w-[1248px] mx-auto px-4 md:px-0"
+				>
+					<main>
+						<section className="flex text-white items-center justify-between">
+							<h2 className="uppercase leading-none text-[18px] md:text-[34px]">
 								{CorrectingText(category.name_en)} RENTAL DUBAI
 							</h2>
 							<Link
-								to={`/${category.id}`}
+								to={`/cars/${category.id}`}
+								onClick={scrollTop}
 								className="group cursor-pointer flex items-center gap-x-3"
 							>
-								<span className="text-[20px]">SEE ALL</span>
+								<span className="xs:text-[20px]">SEE ALL</span>
 								<CgChevronRightO className="size-7 group-hover:translate-x-1 transition-all" />
 							</Link>
-						</div>
+						</section>
 
-						<Swiper className="mt-10" slidesPerView={3} spaceBetween={70}>
+						<Swiper
+							className="mt-10"
+							spaceBetween={70}
+							slidesPerView={1}
+							breakpoints={{
+								640: {
+									slidesPerView: 2,
+									spaceBetween: 30,
+								},
+								980: {
+									slidesPerView: 3,
+									spaceBetween: 40,
+								},
+								1200: {
+									slidesPerView: 3,
+									spaceBetween: 70,
+								},
+								1380: {
+									slidesPerView: 3,
+									spaceBetween: 80,
+								},
+							}}
+						>
 							{category.cars.map((car) => (
 								<SwiperSlide
 									key={car.id}
-									className="max-w-[350px] h-[440px] bg-gradient cursor-pointer p-4 text-white rounded-[20px]"
+									className="max-w-[350px] h-[435px] bg-gradient cursor-pointer px-4 text-white rounded-[20px]"
 								>
 									<Link to={`/carinfo/${car.id}`} onClick={scrollTop}>
 										{car.car_images.map(
@@ -66,7 +92,7 @@ export default function Cars() {
 												),
 										)}
 
-										<div>
+										<article>
 											<h3 className="text-[22px] tracking-wider leading-none opacity-95">
 												{car.brand.title} {car.model.name}
 											</h3>
@@ -79,14 +105,14 @@ export default function Cars() {
 												</span>
 											</div>
 											<span className="opacity-65">per day</span>
-										</div>
+										</article>
 									</Link>
 								</SwiperSlide>
 							))}
 						</Swiper>
-					</div>
-				</div>
+					</main>
+				</section>
 			))}
-		</section>
+		</main>
 	);
 }

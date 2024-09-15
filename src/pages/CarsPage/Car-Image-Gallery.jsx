@@ -20,12 +20,12 @@ export default function CarImageGallery({ images }) {
 	};
 
 	return (
-		<div className="flex space-x-5">
+		<main className="flex lg:space-x-5 lg:mb-12">
 			<Swiper
 				mousewheel={true}
 				direction="vertical"
-				slidesPerView={4}
-				className="h-[62vh] w-[200px]"
+				slidesPerView={3}
+				className="h-[40vh] lg:h-[50vh] w-[200px] overflow-y-auto no-scrollbar"
 				spaceBetween={0}
 				modules={[FreeMode, Mousewheel]}
 			>
@@ -36,7 +36,7 @@ export default function CarImageGallery({ images }) {
 								<img
 									alt="car thumbnail"
 									onClick={() => handleThumbnailClick(index)}
-									className="h-[14vh] w-full object-cover rounded-md"
+									className="h-[12vh] lg:h-[14vh] w-[80%] lg:w-full object-cover rounded-md"
 									src={`https://api.autozoomrental.com/api/uploads/images/${img.image.src}`}
 								/>
 							</SwiperSlide>
@@ -44,21 +44,21 @@ export default function CarImageGallery({ images }) {
 				)}
 			</Swiper>
 
-			<Swiper className="h-[60vh] w-full">
+			<Swiper className="lg:h-[60vh] w-full">
 				{carImages.map(
 					(img, index) =>
 						img.is_main && (
 							<SwiperSlide key={index}>
 								<img
 									alt="selected car img"
-									className="w-full h-[100%] object-cover rounded-md"
+									className="w-fullwe lg:w-[97%] h-[58%] xs:h-[100%] object-cover rounded-md"
 									src={`https://api.autozoomrental.com/api/uploads/images/${img.image.src}`}
 								/>
 							</SwiperSlide>
 						),
 				)}
 			</Swiper>
-		</div>
+		</main>
 	);
 }
 
